@@ -1,94 +1,295 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+// import "../styles/globals.css"; // Import custom CSS
+import "./globals.css"; // Import custom CSS
+
+// import cap from ".../img/cap.png";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.js</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const bottleRef = useRef(null);
+  const capRef = useRef(null);
+  const textRef = useRef(null);
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+  useEffect(() => {
+    // ✅ Use a GSAP Timeline for better control
+    // const tl = gsap.timeline({ delay: 1 });
+
+    // ✅ Circle Animation
+    gsap.to(".circle", {
+      opacity: 0.5,
+      scale: 1.2,
+      duration: 1.5,
+      delay: 3,
+    });
+
+    // ✅ Cap and Bottle Movement
+    gsap.to(capRef.current, {
+      y: -140,
+      opacity: 1,
+      duration: 1.5,
+      delay: 3
+    });
+
+    gsap.to(bottleRef.current, {
+      y: 160,
+      opacity: 1,
+      duration: 1.5,
+      delay: 3
+    });
+
+    // ✅ ScrollTrigger Animations (Cap & Bottle Move Down on Scroll)
+    gsap.to(capRef.current, {
+      y: 470, // Move cap down
+      duration: 1.5,
+      delay: 3,
+      ease: "back.out(1.7)",
+      scrollTrigger: {
+        trigger: bottleRef.current,
+        start: "top center",
+        end: "bottom top",
+        scrub: 2,
+        // markers: true,
+        pin: false, // ✅ Don't pin cap, only pin bottle
+      },
+    });
+
+    gsap.to(bottleRef.current, {
+      y: 470, // Move bottle down
+      duration: 1.5,
+      ease: "back.out(1.7)",
+      delay: 3,
+      scrollTrigger: {
+        trigger: bottleRef.current,
+        start: "top center",
+        end: "bottom top",
+        scrub: 2,
+        // markers: true,
+        pin: true, // ✅ Pin only the bottle
+      },
+    });
+
+    // ✅ Text Animations
+    gsap.to(textRef.current, { opacity: 1, scale: 1, duration: 2 , delay: 3,});
+
+    // ✅ Button and Side Bottles Animation (No Delay Conflicts)
+    gsap.from(".heroTextButton", { duration: 1, y: 50, opacity: 0, delay: 2 });
+    gsap.from(".sideBottle2", { opacity: 0, scale: 0, duration: 1.5, delay: 1 });
+    gsap.from(".sideBottle3", { opacity: 0, scale: 0, duration: 1.5, delay: 1 });
+
+  }, []);
+
+  return (
+    <div className="container">
+
+      <nav className="navbar">
+        <h1 className="logo">BOTOL</h1>
+        <div className="nav-links">
+          <a href="#">Shop</a>
+          <a href="#">Contact us</a>
+          <a href="#">About</a>
+          <a href="#">Journal</a>
+          <a href="#">Custom</a>
+          <button className="inquiry-btn">Inquiry Now</button>
         </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </nav>
+
+
+      <div className="hero">
+        <div className="circle">
+          <div className="innerCircle"></div>
+        </div>
+
+        {/* Bottle Cap */}
+        <img
+          ref={capRef}
+          src="/cap.png" // Replace with actual cap image
+          alt="Bottle Cap"
+          className="bottle-cap"
+        />
+
+        {/* Bottle */}
+        <img
+          ref={bottleRef}
+          src="/bottle.png" // Replace with actual bottle image
+          alt="Bottle"
+          className="bottle"
+        />
+
+        {/* Animated Text */}
+        <div className="heroText">
+          <div className="heroHeading" ref={textRef}>
+            <h1 className="animated-text">The Ultmate Companion for Hydration</h1>
+            <div className="heroSmallText">
+              <h6>We believe in the power of hydration.</h6>
+              <h6>Our mission is simple yet vital.</h6>
+            </div>
+          </div>
+          <div className="heroTextButton">Inquiry Now</div>
+        </div>
+        <div className="sideBottle2">
+          <img className="sideBottle2cap" src="/cap2.png" alt="" />
+          <img className="sideBottle2Bottle" src="/bottle2.png" alt="" />
+        </div>
+        <div className="sideBottle3">
+          <img className="sideBottle3cap" src="/cap3.png" alt="" />
+          <img className="sideBottle3Bottle" src="/bottle3.png" alt="" />
+        </div>
+      </div>
+
+      <section className="section2">
+        {/* <img className="" src="" alt="" /> */}
+        <div className="sec2left">
+          {/* <img className="" src="" alt=""/> */}
+        </div>
+        <div className="sec2right">
+
+          <div className="sec2rightin">
+            <div className="colContainer">
+              <img className="colImage" src="/col1.png" alt="" />
+            </div>
+            <div className="sec2text">Vacuum Bottles</div>
+          </div>
+
+          <div className="sec2rightin">
+            <div className="colContainer">
+              <img className="colImage" src="/col2.png" alt="" />
+            </div>
+            <div className="sec2text">Fridge Bottles & Jugs</div>
+          </div>
+
+          <div className="sec2rightin">
+            <div className="colContainer">
+              <img className="colImage" src="/col3.png" alt="" />
+            </div>
+            <div className="sec2text">Borosilicate Bottles</div>
+          </div>
+
+          <div className="sec2rightin">
+            <div className="colContainer">
+              <img className="colImage" src="/col4.png" alt="" />
+            </div>
+            <div className="sec2text">Kettles</div>
+          </div>
+          {/* <div>
+            <img />
+            <div>Vacuum Bottles</div>
+          </div>
+          <div>
+            <img />
+            <div>Vacuum Bottles</div>
+          </div>
+          <div>
+            <img />
+            <div>Vacuum Bottles</div>
+          </div> */}
+        </div>
+      </section>
+
+      <section className="section3">
+        <div className="sec3Nav">
+          <div>
+            <div className="sec3boldtext">Hydration Essentials</div>
+            <div className="sec3text">DIscover Our Range of Premium Water Bottles</div>
+          </div>
+          <div className="sec3NavButton">VIEW MORE</div>
+        </div>
+
+        <div className="bottleList">
+
+          <div className="bottleCard">
+            <div className="sec3img1">
+              {/* <img src="/1.png" alt="Loading Bottle Image"/> */}
+            </div>
+            <div className="imgCardText">RAINBOW 600</div>
+            <div className="imgCardBut">LEARN MORE</div>
+          </div>
+          <div className="bottleCard">
+            <div className="sec3img2">
+              {/* <img src="/1.png" alt="Loading Bottle Image"/> */}
+            </div>
+            <div className="imgCardText">Rio 650</div>
+            <div className="imgCardBut">LEARN MORE</div>
+          </div>
+          <div className="bottleCard">
+            <div className="sec3img3">
+              {/* <img src="/1.png" alt="Loading Bottle Image"/> */}
+            </div>
+            <div className="imgCardText">Big Bull 300</div>
+            <div className="imgCardBut">LEARN MORE</div>
+          </div>
+          <div className="bottleCard">
+            <div className="sec3img4">
+              {/* <img src="/1.png" alt="Loading Bottle Image"/> */}
+            </div>
+            <div className="imgCardText">Rome 600</div>
+            <div className="imgCardBut">LEARN MORE</div>
+          </div>
+          <div className="bottleCard">
+            <div className="sec3img5">
+              {/* <img src="/1.png" alt="Loading Bottle Image"/> */}
+            </div>
+            <div className="imgCardText">RAINBOW 600</div>
+            <div className="imgCardBut">LEARN MORE</div>
+          </div>
+          <div className="bottleCard">
+            <div className="sec3img6">
+              {/* <img src="/1.png" alt="Loading Bottle Image"/> */}
+            </div>
+            <div className="imgCardText">Rio 650</div>
+            <div className="imgCardBut">LEARN MORE</div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section4">
+        <div className="sec4text1">Your Transformation, One Step at a Time</div>
+        <div className="sec4text2">Fitness is a journey—every day brings you closer to the life you want</div>
+      </section>
+
+      <footer className="footer">
+        <section className="foot">
+          <div className="footerIcon">
+
+            <div className="footerLogo">
+              {/* <img /> */}
+            </div>
+
+            <div className="socialMedia">
+              <div className="socialMedia2">
+                <img className="socialMediaLogo" src="/facebook.png" alt="Facebook" />
+              </div>
+              <div className="socialMedia2">
+                <img className="socialMediaLogo" src="/instagram.png" alt="Facebook" />
+              </div>
+              <div className="socialMedia2">
+                <img className="socialMediaLogo" src="/twitter.png" alt="Facebook" />
+              </div>
+            </div>
+
+          </div>
+          <div className="footerNavLinks">
+            <nav className="linksfooter">
+              <li>Shop</li>
+              <li>Contact us</li>
+              <li>About</li>
+              <li>Journal</li>
+              <li>Custom</li>
+            </nav>
+            <nav className="linksfooter">
+              <li>FAQ's</li>
+              <li>Return</li>
+              <li>Ordering</li>
+              <li>Shipping</li>
+              <li>Personalization Policies</li>
+            </nav>
+          </div>
+        </section>
+        <section className="copyright">Copyright &copy; 2025 BOTOL. All Rights Reserved.</section>
       </footer>
     </div>
   );
