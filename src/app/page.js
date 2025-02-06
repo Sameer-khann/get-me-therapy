@@ -16,7 +16,6 @@ export default function Home() {
   const textRef = useRef(null);
 
   useEffect(() => {
-    // ✅ Use a GSAP Timeline for better control
     // const tl = gsap.timeline({ delay: 1 });
 
     // ✅ Circle Animation
@@ -28,48 +27,50 @@ export default function Home() {
     });
 
     // ✅ Cap and Bottle Movement
-    gsap.to(capRef.current, {
+    gsap.to(".bottle-cap", {
       y: -140,
       opacity: 1,
       duration: 1.5,
-      delay: 3
+      delay: 3,
     });
 
-    gsap.to(bottleRef.current, {
+    gsap.to(".bottle", {
       y: 160,
       opacity: 1,
       duration: 1.5,
-      delay: 3
+      delay: 3,
     });
 
     // ✅ ScrollTrigger Animations (Cap & Bottle Move Down on Scroll)
-    gsap.to(capRef.current, {
+    gsap.to(".bottle-cap", {
       y: 470, // Move cap down
-      duration: 1.5,
-      delay: 3,
-      ease: "back.out(1.7)",
+      // duration: 1.5,
+      // delay: 3,
+      // ease: "back.out(1.7)",
       scrollTrigger: {
-        trigger: bottleRef.current,
+        trigger: ".bottle-cap",
+        scroller:"body",
         start: "top center",
         end: "bottom top",
         scrub: 2,
-        // markers: true,
+        markers: true,
         pin: false, // ✅ Don't pin cap, only pin bottle
       },
     });
 
-    gsap.to(bottleRef.current, {
+    gsap.to(".bottle", {
       y: 470, // Move bottle down
-      duration: 1.5,
-      ease: "back.out(1.7)",
-      delay: 3,
+      // duration: 1.5,
+      // ease: "back.out(1.7)",
+      // delay: 3,
       scrollTrigger: {
-        trigger: bottleRef.current,
+        trigger:".bottle",
+        scroller:"body",
         start: "top center",
         end: "bottom top",
         scrub: 2,
-        // markers: true,
-        pin: true, // ✅ Pin only the bottle
+        markers: true,
+        // pin: true, // ✅ Pin only the bottle
       },
     });
 
@@ -77,9 +78,9 @@ export default function Home() {
     gsap.to(textRef.current, { opacity: 1, scale: 1, duration: 2 , delay: 3,});
 
     // ✅ Button and Side Bottles Animation (No Delay Conflicts)
-    gsap.from(".heroTextButton", { duration: 1, y: 50, opacity: 0, delay: 2 });
-    gsap.from(".sideBottle2", { opacity: 0, scale: 0, duration: 1.5, delay: 1 });
-    gsap.from(".sideBottle3", { opacity: 0, scale: 0, duration: 1.5, delay: 1 });
+    gsap.from(".heroTextButton", { duration: 1.5, y: 50, opacity: 0, delay: 3 });
+    gsap.from(".sideBottle2", { opacity: 0, scale: 0, duration: 1.5, delay: 3 });
+    gsap.from(".sideBottle3", { opacity: 0, scale: 0, duration: 1.5, delay: 3 });
 
   }, []);
 
