@@ -51,7 +51,7 @@ export default function Home() {
         start: "top 80%",
         end: "top 10%",
         scrub: 2,
-        markers: true,
+        // markers: true,
       },
     });
 
@@ -64,7 +64,7 @@ export default function Home() {
         start: "top 80%",
         end: "top 10%",
         scrub: 2,
-        markers: true,
+        // markers: true,
       },
     });
 
@@ -82,7 +82,7 @@ export default function Home() {
     <div className="container">
 
       <nav className="navbar">
-        <h1 className="logo">BOTOL</h1>
+        <img className="logo" src="/logoBlack.png" alt=""/>
         <div className="nav-links">
           <a href="#">Shop</a>
           <a href="#">Contact us</a>
@@ -242,7 +242,7 @@ export default function Home() {
       </section>
 
       <section className="section4">
-        <div className="sec4text1">Your Transformation, One Step at a Time</div>
+        <div className="sec4text1">YOUR TRANSFORMATION ONE STEP AT A TIME</div>
         <div className="sec4text2">Fitness is a journey—every day brings you closer to the life you want</div>
       </section>
 

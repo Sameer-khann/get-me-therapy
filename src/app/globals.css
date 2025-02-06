@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Familjen+Grotesk:ital,wght@0,400..700;1,400..700&family=Jost:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
+
+
 /* General Reset */
 * {
   margin: 0;
@@ -9,6 +14,10 @@ body {
   font-family: Arial, sans-serif;
   background: white;
   overflow-x: hidden;
+  font-family: "Familjen Grotesk", serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
 }
 
 /* Container */
@@ -32,10 +41,11 @@ body {
   align-items: center;
 }
 
-.logo {
+
+/* .logo {
   font-size: 24px;
   font-weight: bold;
-}
+} */
 
 .nav-links {
   display: flex;
@@ -50,7 +60,7 @@ body {
 }
 
 .inquiry-btn  {
-  background: #10a0ff;
+  background: linear-gradient(to right, rgba(59, 225, 225, 0.986), rgb(70, 141, 222));
   color: white;
   padding: 8px 16px;
   border: none;
@@ -77,8 +87,8 @@ body {
   width: auto;
   height: auto;
   border-radius: 50%;
-  background: linear-gradient(to right, #4a90e2, #8e44ad);
-  opacity: 0.5;
+  background: linear-gradient(to right, rgba(77, 251, 251, 1), rgba(120, 142, 255, 1));
+  /* opacity: 0.5; */
   padding: 8px;
   /* position: absolute;
   top: 50%; */
@@ -143,7 +153,7 @@ body {
 }
 
 .heroTextButton{
-  background: #10a0ff;
+  background: linear-gradient(to right, rgba(59, 225, 225, 0.986), rgb(70, 141, 222));
   color: white;
   padding: 8px 16px;
   border: none;
@@ -161,7 +171,7 @@ body {
   flex-direction: column;
   border-radius: 50%;
   /* background: #8e44ad; */
-  background: linear-gradient(to right, #4a90e2, #8e44ad);
+  background: linear-gradient(to bottom, rgba(77, 251, 251, 1), rgba(120, 142, 255, 1));
   position: absolute;
   top: 14%;
   left: 5%;
@@ -193,7 +203,7 @@ body {
   flex-direction: column;
   border-radius: 50%;
   /* background: #8e44ad; */
-  background: linear-gradient(to right, #4a90e2, #8e44ad);
+  background: linear-gradient(to bottom, rgba(77, 251, 251, 1), rgba(120, 142, 255, 1));
   position: absolute;
   top: 14%;
   right: 5%;
@@ -447,22 +457,27 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   /* border-radius: 20px; */
+  gap: 6
 }
 
 .sec4text1 {
-  font-family: Urbanist;
-  font-size: 14px;
+  font-family: "Urbanist", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-size: auto;
   font-weight: 600;
-  line-height: 18px;
+  line-height: auto;
   letter-spacing: 1.2px;
   text-align: center;
-  text-underline-position: from-font;
-  text-decoration-skip-ink: none;
+  /* text-underline-position: from-font;
+  text-decoration-skip-ink: none; */
 }
 
 .sec4text2 {
   width: 45vw;
-  font-family: Urbanist;
+  font-family: "Urbanist", serif;
+  font-optical-sizing: auto;
+  font-style: normal;
   font-size: 36px;
   font-weight: 400;
   line-height: 46.8px;
@@ -474,7 +489,7 @@ body {
 .footer {
   width: 100vw;
   height: 40vh;
-  background: #1d1c1c;
+  background: rgba(32, 31, 31, 1);
 }
 
 .foot {
@@ -502,7 +517,7 @@ body {
   padding: 0.8em;
   width: 100vw;
   height: auto;
-  background: #323232;
+  background: rgba(50, 50, 50, 1);
 }
 
 .footerLogo {
