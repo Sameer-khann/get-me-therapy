@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 // import "../styles/globals.css"; // Import custom CSS
@@ -16,22 +16,19 @@ export default function Home() {
   const textRef = useRef(null);
 
   useEffect(() => {
-    // const tl = gsap.timeline({ delay: 1 });
 
-    // ✅ Circle Animation
     gsap.to(".circle", {
       opacity: 0.5,
       scale: 1.2,
       duration: 2,
-      delay: 3,
+      // delay: 1,
     });
 
-    // ✅ Cap and Bottle Movement
     gsap.from(".bottle-cap", {
       y: 150,
       opacity: 1,
       duration: 2,
-      delay: 3,
+      // delay: 1,
       ease: "none"
     });
 
@@ -39,7 +36,7 @@ export default function Home() {
       y: -170,
       opacity: 1,
       duration: 2,
-      delay: 3,
+      // delay: 1,
     });
 
     gsap.to(".bottle-cap", {
@@ -60,7 +57,7 @@ export default function Home() {
       duration: 1.5,
       ease: "none",
       scrollTrigger: {
-        trigger:".section2",
+        trigger: ".section2",
         start: "top 80%",
         end: "top 10%",
         scrub: 2,
@@ -68,22 +65,26 @@ export default function Home() {
       },
     });
 
-    // ✅ Text Animations
-    gsap.to(textRef.current, { opacity: 1, scale: 1, duration: 2 , delay: 3.5,});
+    gsap.to(textRef.current, { opacity: 1, scale: 1, duration: 2, delay: 0.5, });
 
-    // ✅ Button and Side Bottles Animation (No Delay Conflicts)
-    gsap.from(".heroTextButton", { duration: 2, y: 100, opacity: 0, delay: 3.5 });
-    gsap.from(".sideBottle2", { opacity: 0, scale: 0, duration: 2, delay: 3 });
-    gsap.from(".sideBottle3", { opacity: 0, scale: 0, duration: 2, delay: 3 });
+    gsap.from(".heroTextButton", { duration: 2, y: 100, opacity: 0, delay: 0.5 });
+    gsap.from(".sideBottle2", { opacity: 0, scale: 0, duration: 2});
+    gsap.from(".sideBottle3", { opacity: 0, scale: 0, duration: 2});
 
   }, []);
+
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <div className="container">
 
       <nav className="navbar">
-        <img className="logo" src="/logoBlack.png" alt=""/>
-        <div className="nav-links">
+        <img className="logo" src="/logoBlack.png" alt="Logo" />
+
+        <button className="menu-btn" onClick={() => setIsOpen(!isOpen)}>☰</button>
+
+        <div className={`nav-links ${isOpen ? "active" : ""}`}>
+          {/* <button className="close-btn" onClick={() => setIsOpen(false)}>✖</button> */}
           <a href="#">Shop</a>
           <a href="#">Contact us</a>
           <a href="#">About</a>
@@ -99,23 +100,21 @@ export default function Home() {
           <div className="innerCircle"></div>
         </div>
 
-        {/* Bottle Cap */}
         <img
           ref={capRef}
-          src="/cap.png" // Replace with actual cap image
+          src="/cap.png"
           alt="Bottle Cap"
           className="bottle-cap"
         />
 
-        {/* Bottle */}
         <img
           ref={bottleRef}
-          src="/bottle.png" // Replace with actual bottle image
+          src="/bottle.png" 
           alt="Bottle"
           className="bottle"
         />
 
-        {/* Animated Text */}
+         {/* Animated Text  */}
         <div className="heroText">
           <div className="heroHeading" ref={textRef}>
             <h1 className="animated-text">The Ultmate Companion for Hydration</h1>
@@ -170,18 +169,6 @@ export default function Home() {
             </div>
             <div className="sec2text">Kettles</div>
           </div>
-          {/* <div>
-            <img />
-            <div>Vacuum Bottles</div>
-          </div>
-          <div>
-            <img />
-            <div>Vacuum Bottles</div>
-          </div>
-          <div>
-            <img />
-            <div>Vacuum Bottles</div>
-          </div> */}
         </div>
       </section>
 

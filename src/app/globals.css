@@ -3,7 +3,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
 
 
-/* General Reset */
 * {
   margin: 0;
   padding: 0;
@@ -31,6 +30,8 @@ body {
 }
 
 /* Navbar */
+
+
 .navbar {
   position: absolute;
   top: 20px;
@@ -40,12 +41,6 @@ body {
   padding: 0 40px;
   align-items: center;
 }
-
-
-/* .logo {
-  font-size: 24px;
-  font-weight: bold;
-} */
 
 .nav-links {
   display: flex;
@@ -59,7 +54,7 @@ body {
   padding: 1vh;
 }
 
-.inquiry-btn  {
+.inquiry-btn {
   background: linear-gradient(to right, rgba(59, 225, 225, 0.986), rgb(70, 141, 222));
   color: white;
   padding: 8px 16px;
@@ -69,6 +64,47 @@ body {
   font-size: 14px;
 }
 
+@media (min-width: 769px){
+  .menu-btn{
+    display: none;
+  }
+}
+@media (max-width: 768px) {
+  .navbar {
+    justify-content: space-around;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: white;
+    width: 100%;
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-links.active {
+    display: flex;
+    background: rgb(243, 151, 243);
+    z-index: 20;
+  }
+
+  .menu-btn {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    align-self: flex-end;
+    text-decoration: none;
+  }
+}
+
+
 /* Hero Section */
 .hero {
   display: flex;
@@ -77,9 +113,6 @@ body {
   justify-content: center;
   height: 100vh;
   width: 100vw;
-  /* position: relative; */
-  /* margin-bottom: 130px; */
-  /* background: crimson; */
 }
 
 /* Circle Background */
@@ -90,8 +123,6 @@ body {
   background: linear-gradient(to right, rgba(77, 251, 251, 1), rgba(120, 142, 255, 1));
   /* opacity: 0.5; */
   padding: 8px;
-  /* position: absolute;
-  top: 50%; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -102,12 +133,8 @@ body {
   height: 350px;
   border-radius: 50%;
   background: white;
-  /* margin: 8px; */
-  /* opacity: 1; */
-  /* position: absolute; */
 }
 
-/* Bottle */
 .bottle {
   width: 140px;
   position: absolute;
@@ -115,13 +142,27 @@ body {
   z-index: 5;
 }
 
-/* Bottle Cap */
 .bottle-cap {
   width: 140px;
   position: absolute;
   top: 1.5%;
   z-index: 5;
   opacity: 1;
+}
+
+@media (max-width: 768px){
+  .bottle, .bottle-cap{
+    display: none;
+  }
+
+  .hero {
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+  }
 }
 
 .heroText{
@@ -162,6 +203,12 @@ body {
   font-size: 14px;
 }
 
+@media (max-width: 768px){
+  .animated-text {
+    font-size: 3rem;
+  }
+}
+
 .sideBottle2{
   height: 6rem;
   width: 6rem;
@@ -173,7 +220,7 @@ body {
   /* background: #8e44ad; */
   background: linear-gradient(to bottom, rgba(77, 251, 251, 1), rgba(120, 142, 255, 1));
   position: absolute;
-  top: 14%;
+  top: 12%;
   left: 5%;
   transform: rotate(-10deg);
 }
@@ -205,7 +252,7 @@ body {
   /* background: #8e44ad; */
   background: linear-gradient(to bottom, rgba(77, 251, 251, 1), rgba(120, 142, 255, 1));
   position: absolute;
-  top: 14%;
+  top: 12%;
   right: 5%;
   transform: rotate(10deg);
 }
@@ -227,7 +274,6 @@ body {
 }
 
 .section2 {
-  background: lightblue;
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -252,8 +298,6 @@ body {
   justify-content: center;
   flex-direction: column;
   color: white;
-  /* text-align: left; */
-
 }
 
 .sec2rightin {
@@ -282,15 +326,30 @@ body {
 }
 
 .sec2text {
-  /* font-family: ;
-  font-size: 40px;
-  font-family: Familjen Grotesk; */
   font-size: 40px;
   font-weight: 400;
   line-height: 50px;
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
+}
+
+@media (max-width: 768px){
+
+  .section2 {
+    padding: 2em;
+    flex-direction: column;
+  }
+
+  .sec2left {
+    width: 100vw;
+    height: 120vw;
+  }
+
+  .sec2right {
+    width: 100vw;
+    height: 180vh;
+  }
 }
 
 .section3 {
@@ -405,6 +464,12 @@ body {
   border-radius: 20px;
 }
 
+@media (max-width: 768px){
+  .sec3NavButton {
+    display: none;
+  }
+}
+
 .imgCardText {
   font-family: Familjen Grotesk;
   font-size: 32px;
@@ -413,7 +478,7 @@ body {
   text-align: left;
   text-underline-position: from-font;
   text-decoration-skip-ink: none;
-  width: 400px;
+  /* width: 400px; */
   height: 40px;
 }
 
@@ -434,15 +499,26 @@ body {
   justify-content: center;
   flex-direction: column;
   gap: 12;
-  padding: 1em 0;
+  padding: 1em;
 }
 
 .bottleList {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   gap: 5;
+}
+
+@media (max-width: 768px){
+  .bottleCard {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 12;
+    padding: 3em;
+  }
 }
 
 .section4 {
@@ -469,8 +545,6 @@ body {
   line-height: auto;
   letter-spacing: 1.2px;
   text-align: center;
-  /* text-underline-position: from-font;
-  text-decoration-skip-ink: none; */
 }
 
 .sec4text2 {
@@ -517,7 +591,7 @@ body {
   padding: 0.8em;
   width: 100vw;
   height: auto;
-  background: rgba(50, 50, 50, 1);
+  background: rgba(50, 50, 50, 1)hero;
 }
 
 .footerLogo {
@@ -554,9 +628,6 @@ body {
 .socialMediaLogo {
   height: 1.2em;
   width: 1.2em;
-  /* padding-bottom: 3px; */
-  /* color: white */
-  /* filter: grayscale(100%); */
   filter: brightness(0) invert(1);
 }
 
@@ -582,4 +653,10 @@ body {
   justify-content: center;
   flex-direction: column;
   /* gap: 45; */
+}
+
+@media (max-width: 768px){
+  .footerNavLinks {
+    display: none;
+  }
 }
