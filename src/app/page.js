@@ -62,6 +62,7 @@ export default function Home() {
         end: "top 10%",
         scrub: 2,
         // markers: true,
+        // pin: true,
       },
     });
 
