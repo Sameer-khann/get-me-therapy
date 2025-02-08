@@ -19,6 +19,33 @@ body {
   font-style: normal;
 }
 
+.cursor{
+  height: 13px;
+  width: 13px;
+  background-color: #6bc9f1;
+  border-radius: 50%;
+  position: fixed;
+  z-index : 100;
+}
+
+.cursor2{
+  height: 10px;
+  width: 10px;
+  background-color: #6bc9f1;
+  border-radius: 50%;
+  position: fixed;
+  z-index : 100;
+}
+
+.cursor3{
+  height: 7px;
+  width: 7px;
+  background-color: #6bc9f1;
+  border-radius: 50%;
+  position: fixed;
+  z-index : 100;
+}
+
 /* Container */
 .container {
   min-height: 100vh;

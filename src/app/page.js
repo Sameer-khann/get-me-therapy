@@ -17,6 +17,35 @@ export default function Home() {
 
   useEffect(() => {
 
+      // var cursor = document.querySelector(".cursor");
+    
+      document.addEventListener("mousemove", function(event) {
+        gsap.to(".cursor", {
+          x: event.x - 70,
+          y: event.y - 40,
+          duration: 1, // Slow trailing effect
+          ease: "power2.out" // Smooth movement
+        });
+      });
+    
+      document.addEventListener("mousemove", function(event) {
+        gsap.to(".cursor2", {
+          x: event.x - 70,
+          y: event.y - 40,
+          duration: 1.5, // Slow trailing effect
+          ease: "power2.out" // Smooth movement
+        });
+      });
+    
+      document.addEventListener("mousemove", function(event) {
+        gsap.to(".cursor3", {
+          x: event.x - 70,
+          y: event.y - 40,
+          duration: 2, // Slow trailing effect
+          ease: "power2.out" // Smooth movement
+        });
+      });
+
     gsap.to(".circle", {
       opacity: 0.5,
       scale: 1.2,
@@ -78,8 +107,11 @@ export default function Home() {
 
   return (
     <div className="container">
-
       <nav className="navbar">
+          <div className= "cursor"></div>
+          <div className= "cursor2"></div>
+          <div className= "cursor3"></div>
+
         <img className="logo" src="/logoBlack.png" alt="Logo" />
 
         <button className="menu-btn" onClick={() => setIsOpen(!isOpen)}>☰</button>
